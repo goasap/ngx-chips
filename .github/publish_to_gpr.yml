@@ -1,0 +1,33 @@
+name: AutoPublish Package @GOASAP
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    # Setup .npmrc file to publish to GitHub Packages
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '14.x'
+        registry-url: 'https://npm.pkg.github.com'
+        # Defaults to the user or organization that owns the workflow file
+        scope: '@goasap'
+    - run: npm install
+    - run: git config --global user.name "ASAP CI"
+    - run: git config --global user.email "andres@asap507.com"
+    # upgrade npm version in package.json to the tag used in the release.
+    - run: npm version ${{ github.event.release.tag_name }}
+    - run: npm run build
+    - run: npm run release
+    # - run: git push --follow-tags origin master && npm publish
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.ASAP }}
+    - run: git push
+      env:
+        # The secret is passed automatically. Nothing to configure.
+        github-token: ${{ secrets.ASAP }}

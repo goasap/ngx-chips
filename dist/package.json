@@ -2,6 +2,10 @@
   "name": "ngx-chips",
   "version": "2.2.2",
   "description": "Tag Input component for Angular",
+  "main": "bundles/ngx-chips.umd.js",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/@goasap"
+  },
   "author": {
     "name": "Giancarlo Buomprisco",
     "email": "giancarlopsk@gmail.com"
@@ -15,9 +19,9 @@
   "peerDependencies": {
     "@angular/animations": ">=10.1.5",
     "@angular/common": ">=10.1.5",
+    "@angular/compiler": ">=10.1.5",
     "@angular/core": ">=10.1.5",
-    "@angular/forms": ">=10.1.5",
-    "@angular/compiler": ">=10.1.5"
+    "@angular/forms": ">=10.1.5"
   },
   "keywords": [
     "angular tag input",
@@ -42,7 +46,6 @@
     "componentsDefaultDirectory": "components/{name}",
     "packageManager": "npm"
   },
-  "main": "bundles/ngx-chips.umd.js",
   "module": "fesm2015/ngx-chips.js",
   "es2015": "fesm2015/ngx-chips.js",
   "esm2015": "esm2015/ngx-chips.js",

@@ -2,6 +2,10 @@
   "name": "ngx-chips",
   "version": "2.2.2",
   "description": "Tag Input component for Angular",
+  "main": "lib/lib/ngx-chips.bundle.js",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/@goasap"
+  },
   "scripts": {
     "release": "npm run build && npm publish dist",
     "postrelease": "rm -rf dist",
@@ -55,9 +59,9 @@
   "peerDependencies": {
     "@angular/animations": ">=10.1.5",
     "@angular/common": ">=10.1.5",
+    "@angular/compiler": ">=10.1.5",
     "@angular/core": ">=10.1.5",
-    "@angular/forms": ">=10.1.5",
-    "@angular/compiler": ">=10.1.5"
+    "@angular/forms": ">=10.1.5"
   },
   "keywords": [
     "angular tag input",
