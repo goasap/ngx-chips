@@ -90,6 +90,18 @@ export class TagInputComponent extends TagInputAccessor implements OnInit, After
     @Input() public maxItems: number = defaults.tagInput.maxItems;
 
     /**
+     * @name maxItems
+     * @desc maximum number of items that can be added
+     */
+    @Input() public maxlength: number;
+
+    /**
+     * @name maxItems
+     * @desc minimun number of text
+     */
+    @Input() public minlength: number;
+
+    /**
      * @name validators
      * @desc array of Validators that are used to validate the tag before it gets appended to the list
      */
