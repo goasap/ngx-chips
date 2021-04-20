@@ -61,6 +61,16 @@ export class TagInputForm implements OnInit, OnChanges {
     @Input() public inputId: string;
 
     /**
+     * @name maxLength
+     */
+    @Input() public maxLength: number;
+
+    /**
+     * @name maxLength
+     */
+    @Input() public minLength: number;
+
+    /**
      * @name inputClass
      */
     @Input() public inputClass: string;
@@ -194,12 +204,21 @@ export class TagInputForm implements OnInit, OnChanges {
      * @param $event
      */
     public onKeyDown($event) {
-        this.inputText = this.value.value;
-        if ($event.key === 'Enter') {
-            this.submit($event);
+      this.inputText = this.value.value;
+
+      if ($event.key === 'Backspace') {
+        return this.onKeydown.emit($event);
+      }
+
+      if ($event.key === 'Enter') {
+        this.submit($event);
+      } else {
+        if (this.value.value.length >= this.maxLength) {
+          return false;
         } else {
           return this.onKeydown.emit($event);
         }
+      }
     }
 
     /**
@@ -215,7 +234,13 @@ export class TagInputForm implements OnInit, OnChanges {
      * @name submit
      */
     public submit($event: any): void {
-        $event.preventDefault();
+      $event.preventDefault();
+      if (this.minLength === undefined) {
         this.onSubmit.emit($event);
+      } else {
+        if (this.inputText.length >= this.minLength) {
+          this.onSubmit.emit($event);
+        }
+      }
     }
 }
